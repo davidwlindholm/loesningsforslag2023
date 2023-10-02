@@ -1,0 +1,33 @@
+1. Udlån og returnering
+Tidligere var det muligt at returnere bøger der ikke var udlånt, og låne bøger der ikke var tilgængelige.
+Det er nu fikset ved at ændre metoderne BorrowBook() og ReturnBook().
+
+På grund af disse ændringer er følgende unit tests ikke længere relevante, og derfor slettet:
+Ikke_udlaant_bog_forbliver_ikke_udlaant_hvis_den_forsoeges_returneret()
+Udlaant_bog_forbliver_udlaant_BorrowBook_kaldes_igen()
+
+I stedet introduceres de nye unit tests:
+Bog_kan_ikke_laanes_hvis_udlaant()
+Bog_kan_ikke_afleveres_hvis_ikke_udlaant()
+
+-----
+
+2. Læsehastighed
+De fleste kan læse omkring 1 side i minuttet, men der er forskel og især børn og folk med handicap kan have svært ved at følge det tempo.
+Derfor ændres vores CalculateReadingTimeInMinutes til at tage et antal ord per minut med ind som parameter, det anvendes til at teste Læsehastighed
+
+Det betyder at følgende unit test slettes:
+Bog_har_korrekt_laesehastighed()
+
+I stedet introduceres de nye unit tests:
+Bog_har_korrekt_laesehastighed(int minutter, int ordPerMinut) 
+Bog_returnerer_minus_en_ved_ugyldig_laesehastighed(int ordPerMinut)
+
+-----
+
+3. Decimaler i rating
+Det kan diskuteres om ratings bør afrundes her eller på outputstadiet som man traditionelt vil gøre.
+Men eftersom de ekstra decimaler ikke tjener noget formål er det logisk at afrunde dem her.
+
+Det resulterer ikke i sletning af unit tests, men følgende nye test introduceres:
+Gennemsnit_afrundes_korrekt_ved_flere_anmeldelser()
